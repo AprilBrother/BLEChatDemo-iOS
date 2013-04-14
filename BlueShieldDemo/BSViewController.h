@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) BlueShield *shield;
 
+- (IBAction)reloadClicked:(id)sender;
+
 @end

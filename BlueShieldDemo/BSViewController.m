@@ -18,11 +18,9 @@
 {
     [super viewDidLoad];
 
-    
     _shield = [[BlueShield alloc] init];
     [_shield controlSetup];
     _shield.delegate = self;
-    [_shield findBLEPeripherals:30];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,6 +47,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    CBPeripheral *p = [_shield.peripherals objectAtIndex:indexPath.row];
+    cell.textLabel.text = p.name;
     
     return cell;
 }
@@ -66,11 +66,15 @@
      */
 }
 
-#pragma mark - BlueShieldDelegate
+#pragma mark - IBAction
 
-- (void)shieldReady {
-    NSLog(@"Shields is ready!");
-    [self.tableView reloadData];
+- (IBAction)reloadClicked:(id)sender {
+    double timeout = 3;
+    [_shield findBLEPeripherals:timeout];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.tableView reloadData];
+    });
 }
 
 @end

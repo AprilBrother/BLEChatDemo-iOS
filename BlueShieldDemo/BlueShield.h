@@ -15,9 +15,6 @@
 
 @protocol BlueShieldDelegate
 
-@optional
-- (void)shieldReady;
-
 @end
 
 @interface BlueShield : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>

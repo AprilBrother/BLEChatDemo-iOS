@@ -163,7 +163,6 @@
  *
  */
 - (int) findBLEPeripherals:(int) timeout {
-    
     if (self.cm.state != CBCentralManagerStatePoweredOn) {
         printf("CoreBluetooth not correctly initialized !\r\n");
         printf("State = %d (%s)\r\n",self.cm.state,[self centralManagerStateToString:self.cm.state]);
@@ -485,6 +484,7 @@
      advertisementData:(NSDictionary *)advertisementData
                   RSSI:(NSNumber *)RSSI
 {
+    
     if (!self.peripherals) {
         self.peripherals = [[NSMutableArray alloc] initWithObjects:peripheral, nil];
     } else {
@@ -530,7 +530,6 @@
             CBService *s = [peripheral.services objectAtIndex:(peripheral.services.count - 1)];
             if([self compareCBUUID:service.UUID UUID2:s.UUID]) {
                 printf("Finished discovering characteristics");
-                [[self delegate] shieldReady];
             }
         }
     } else {

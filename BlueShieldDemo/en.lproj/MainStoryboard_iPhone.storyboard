@@ -31,7 +31,13 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="BlueShield" id="jfT-NL-XE9"/>
+                    <navigationItem key="navigationItem" title="BlueShield" id="jfT-NL-XE9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="7ZK-cf-ws6">
+                            <connections>
+                                <action selector="reloadClicked:" destination="FcF-jA-k9r" id="cf4-iG-3Z6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bBk-GF-6RO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -56,6 +62,9 @@
     <classes>
         <class className="BSViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BSViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="reloadClicked:"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
