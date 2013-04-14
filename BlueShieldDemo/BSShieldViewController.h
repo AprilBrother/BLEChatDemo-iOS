@@ -11,7 +11,7 @@
 
 @class BlueShield;
 
-@interface BSShieldViewController : UIViewController
+@interface BSShieldViewController : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, weak)     BlueShield      *shield;
 @property (nonatomic, strong)   CBPeripheral    *peripheral;

@@ -29,13 +29,9 @@
  *
  */
 
-- (void)writeValue:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p data:(NSData *)data {
-    UInt16 s = [self swap:serviceUUID];
-    UInt16 c = [self swap:characteristicUUID];
-    NSData *sd = [[NSData alloc] initWithBytes:(char *)&s length:2];
-    NSData *cd = [[NSData alloc] initWithBytes:(char *)&c length:2];
-    CBUUID *su = [CBUUID UUIDWithData:sd];
-    CBUUID *cu = [CBUUID UUIDWithData:cd];
+- (void)writeValue:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID p:(CBPeripheral *)p data:(NSData *)data {
+    CBUUID *su = serviceUUID;
+    CBUUID *cu = characteristicUUID;
     CBService *service = [self findServiceFromUUID:su p:p];
     if (!service) {
         printf("Could not find service with UUID %s on peripheral with UUID %s\r\n",[self CBUUIDToString:su],[self UUIDToString:p.UUID]);
@@ -66,13 +62,9 @@
  *  @see didUpdateValueForCharacteristic
  */
 
--(void) readValue: (int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p {
-    UInt16 s = [self swap:serviceUUID];
-    UInt16 c = [self swap:characteristicUUID];
-    NSData *sd = [[NSData alloc] initWithBytes:(char *)&s length:2];
-    NSData *cd = [[NSData alloc] initWithBytes:(char *)&c length:2];
-    CBUUID *su = [CBUUID UUIDWithData:sd];
-    CBUUID *cu = [CBUUID UUIDWithData:cd];
+-(void) readValue: (CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID p:(CBPeripheral *)p {
+    CBUUID *su = serviceUUID;
+    CBUUID *cu = characteristicUUID;
     CBService *service = [self findServiceFromUUID:su p:p];
     if (!service) {
         printf("Could not find service with UUID %s on peripheral with UUID %s\r\n",[self CBUUIDToString:su],[self UUIDToString:p.UUID]);
@@ -100,13 +92,9 @@
  *  If this is found, the notfication is set.
  *
  */
--(void) notification:(int)serviceUUID characteristicUUID:(int)characteristicUUID p:(CBPeripheral *)p on:(BOOL)on {
-    UInt16 s = [self swap:serviceUUID];
-    UInt16 c = [self swap:characteristicUUID];
-    NSData *sd = [[NSData alloc] initWithBytes:(char *)&s length:2];
-    NSData *cd = [[NSData alloc] initWithBytes:(char *)&c length:2];
-    CBUUID *su = [CBUUID UUIDWithData:sd];
-    CBUUID *cu = [CBUUID UUIDWithData:cd];
+-(void) notification:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID p:(CBPeripheral *)p on:(BOOL)on {
+    CBUUID *su = serviceUUID;
+    CBUUID *cu = characteristicUUID;
     CBService *service = [self findServiceFromUUID:su p:p];
     if (!service) {
         printf("Could not find service with UUID %s on peripheral with UUID %s\r\n",[self CBUUIDToString:su],[self UUIDToString:p.UUID]);

@@ -24,9 +24,9 @@
 @property (strong, nonatomic)   CBCentralManager *cm;
 @property (strong, nonatomic)   CBPeripheral *activePeripheral;
 
-- (void)writeValue:(int)serviceUUID characteristicUUID:(int)characteristicUUID  p:(CBPeripheral *)p data:(NSData *)data;
-- (void)readValue:(int)serviceUUID characteristicUUID:(int)characteristicUUID  p:(CBPeripheral *)p;
-- (void)notification:(int)serviceUUID characteristicUUID:(int)characteristicUUID  p:(CBPeripheral *)p on:(BOOL)on;
+- (void)writeValue:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID  p:(CBPeripheral *)p data:(NSData *)data;
+- (void)readValue:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID  p:(CBPeripheral *)p;
+- (void)notification:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID  p:(CBPeripheral *)p on:(BOOL)on;
 
 - (UInt16)swap:(UInt16)s;
 - (int)controlSetup;
