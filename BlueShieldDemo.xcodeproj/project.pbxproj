@@ -19,6 +19,8 @@
 		1B4729D3171A31EC00DBCCBB /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B4729D1171A31EC00DBCCBB /* MainStoryboard_iPhone.storyboard */; };
 		1B4729D6171A31EC00DBCCBB /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B4729D4171A31EC00DBCCBB /* MainStoryboard_iPad.storyboard */; };
 		1B4729D9171A31EC00DBCCBB /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4729D8171A31EC00DBCCBB /* BSViewController.m */; };
+		1B4729E2171A325400DBCCBB /* BlueShield.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4729E1171A325400DBCCBB /* BlueShield.m */; };
+		1B4729E4171A362B00DBCCBB /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B4729E3171A362B00DBCCBB /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,10 @@
 		1B4729D5171A31EC00DBCCBB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		1B4729D7171A31EC00DBCCBB /* BSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
 		1B4729D8171A31EC00DBCCBB /* BSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
+		1B4729E0171A325400DBCCBB /* BlueShield.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueShield.h; sourceTree = "<group>"; };
+		1B4729E1171A325400DBCCBB /* BlueShield.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueShield.m; sourceTree = "<group>"; };
+		1B4729E3171A362B00DBCCBB /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		1B4729E5171A365200DBCCBB /* BSDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B4729E4171A362B00DBCCBB /* CoreBluetooth.framework in Frameworks */,
 				1B4729BA171A31EC00DBCCBB /* UIKit.framework in Frameworks */,
 				1B4729BC171A31EC00DBCCBB /* Foundation.framework in Frameworks */,
 				1B4729BE171A31EC00DBCCBB /* CoreGraphics.framework in Frameworks */,
@@ -75,6 +82,7 @@
 		1B4729B8171A31EB00DBCCBB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B4729E3171A362B00DBCCBB /* CoreBluetooth.framework */,
 				1B4729B9171A31EC00DBCCBB /* UIKit.framework */,
 				1B4729BB171A31EC00DBCCBB /* Foundation.framework */,
 				1B4729BD171A31EC00DBCCBB /* CoreGraphics.framework */,
@@ -85,6 +93,7 @@
 		1B4729BF171A31EC00DBCCBB /* BlueShieldDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1B4729DF171A323300DBCCBB /* BlueShield */,
 				1B4729C8171A31EC00DBCCBB /* BSAppDelegate.h */,
 				1B4729C9171A31EC00DBCCBB /* BSAppDelegate.m */,
 				1B4729D1171A31EC00DBCCBB /* MainStoryboard_iPhone.storyboard */,
@@ -108,6 +117,16 @@
 				1B4729CF171A31EC00DBCCBB /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1B4729DF171A323300DBCCBB /* BlueShield */ = {
+			isa = PBXGroup;
+			children = (
+				1B4729E0171A325400DBCCBB /* BlueShield.h */,
+				1B4729E1171A325400DBCCBB /* BlueShield.m */,
+				1B4729E5171A365200DBCCBB /* BSDefines.h */,
+			);
+			name = BlueShield;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +200,7 @@
 				1B4729C6171A31EC00DBCCBB /* main.m in Sources */,
 				1B4729CA171A31EC00DBCCBB /* BSAppDelegate.m in Sources */,
 				1B4729D9171A31EC00DBCCBB /* BSViewController.m in Sources */,
+				1B4729E2171A325400DBCCBB /* BlueShield.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +299,7 @@
 				GCC_PREFIX_HEADER = "BlueShieldDemo/BlueShieldDemo-Prefix.pch";
 				INFOPLIST_FILE = "BlueShieldDemo/BlueShieldDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -290,6 +311,7 @@
 				GCC_PREFIX_HEADER = "BlueShieldDemo/BlueShieldDemo-Prefix.pch";
 				INFOPLIST_FILE = "BlueShieldDemo/BlueShieldDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
