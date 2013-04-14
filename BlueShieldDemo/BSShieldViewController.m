@@ -26,8 +26,9 @@
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        CBUUID *serviceId = [CBUUID UUIDWithString:@BS_SERIAL_SERVICE_UUID];
-        CBUUID *charId = [CBUUID UUIDWithString:@BS_SERIAL_RX_UUID];
+        [_peripheral discoverServices:nil];
+        CBUUID *serviceId = [CBUUID UUIDWithString:BS_SERIAL_SERVICE_UUID];
+        CBUUID *charId = [CBUUID UUIDWithString:BS_SERIAL_RX_UUID];
         [_shield notification:serviceId
            characteristicUUID:charId
                             p:_peripheral

@@ -454,6 +454,8 @@
  *
  */
 -(CBCharacteristic *) findCharacteristicFromUUID:(CBUUID *)UUID service:(CBService*)service {
+    NSLog(@"service %@ service.uuid %@", service, service.UUID);
+    NSLog(@"service count %d", [service.characteristics count]);
     for(int i=0; i < service.characteristics.count; i++) {
         CBCharacteristic *c = [service.characteristics objectAtIndex:i];
         if ([self compareCBUUID:c.UUID UUID2:UUID]) return c;
@@ -472,7 +474,6 @@
      advertisementData:(NSDictionary *)advertisementData
                   RSSI:(NSNumber *)RSSI
 {
-    
     if (!self.peripherals) {
         self.peripherals = [[NSMutableArray alloc] initWithObjects:peripheral, nil];
     } else {

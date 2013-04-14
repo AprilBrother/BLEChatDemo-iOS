@@ -10,9 +10,9 @@
  
 */
 
-#define BS_SERIAL_SERVICE_UUID                         "D3E60000-8F36-40D6-B2D5-C5D9F5E81869"
-#define BS_SERIAL_RX_UUID                              "D3E60005-8F36-40D6-B2D5-C5D9F5E81869"
-#define BS_SERIAL_TX_UUID                              "D3E60004-8F36-40D6-B2D5-C5D9F5E81869"
+#define BS_SERIAL_SERVICE_UUID                         @"D3E60000-8F36-40D6-B2D5-C5D9F5E81869"
+#define BS_SERIAL_RX_UUID                              @"D3E60004-8F36-40D6-B2D5-C5D9F5E81869"
+#define BS_SERIAL_TX_UUID                              @"D3E60005-8F36-40D6-B2D5-C5D9F5E81869"
 
 #define BS_SERIAL_RX_LEN                               20
 #define BS_SERIAL_TX_LEN                               20
