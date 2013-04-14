@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BlueShield.h"
+#import "BSDefines.h"
 
-@interface BSViewController : UITableViewController
+@interface BSViewController : UITableViewController <BlueShieldDelegate>
+
+@property (nonatomic, strong) BlueShield *shield;
 
 @end

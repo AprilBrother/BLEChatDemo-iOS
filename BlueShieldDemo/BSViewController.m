@@ -18,11 +18,9 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    _shield = [[BlueShield alloc] init];
+    [_shield findBLEPeripherals:30];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +66,12 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+#pragma mark - BlueShieldDelegate
+
+- (void)shieldReady {
+    NSLog(@"Shields is ready!");
 }
 
 @end
