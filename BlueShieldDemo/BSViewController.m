@@ -7,6 +7,8 @@
 //
 
 #import "BSViewController.h"
+#import "MBProgressHUD.h"
+#import "BSShieldViewController.h"
 
 @interface BSViewController ()
 
@@ -27,6 +29,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"shieldSegue"]) {
+        BSShieldViewController *shieldController = (BSShieldViewController *)segue.destinationViewController;
+        shieldController.peripheral = sender;
+        shieldController.shield = _shield;
+    }
+    
 }
 
 #pragma mark - Table view data source
@@ -58,22 +69,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    CBPeripheral *p = [_shield.peripherals objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"shieldSegue" sender:p];
 }
 
 #pragma mark - IBAction
 
 - (IBAction)reloadClicked:(id)sender {
     double timeout = 3;
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     [_shield findBLEPeripherals:timeout];
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeout * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self.tableView reloadData];
+        [MBProgressHUD hideAllHUDsForView:self.tableView animated:YES];
     });
 }
 
