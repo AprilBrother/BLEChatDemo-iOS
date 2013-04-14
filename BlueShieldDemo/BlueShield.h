@@ -12,7 +12,6 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
-#import <CoreBluetooth/CBService.h>
 
 @protocol BlueShieldDelegate
 
@@ -33,7 +32,7 @@
 - (void)notification:(int)serviceUUID characteristicUUID:(int)characteristicUUID  p:(CBPeripheral *)p on:(BOOL)on;
 
 - (UInt16)swap:(UInt16)s;
-- (int)controlSetup:(int)s;
+- (int)controlSetup;
 - (int)findBLEPeripherals:(int)timeout;
 - (const char *)centralManagerStateToString:(int)state;
 - (void)scanTimer:(NSTimer *)timer;

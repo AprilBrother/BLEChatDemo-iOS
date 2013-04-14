@@ -20,6 +20,8 @@
 		1B4729E2171A325400DBCCBB /* BlueShield.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4729E1171A325400DBCCBB /* BlueShield.m */; };
 		1B4729E4171A362B00DBCCBB /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B4729E3171A362B00DBCCBB /* CoreBluetooth.framework */; };
 		1B4729E8171A435800DBCCBB /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B4729E7171A435800DBCCBB /* BSViewController.m */; };
+		1BF00875171AA738003C2E90 /* bluetooth_shield_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00874171AA738003C2E90 /* bluetooth_shield_57.png */; };
+		1BF00877171AA73C003C2E90 /* bluetooth_shield_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BF00876171AA73C003C2E90 /* bluetooth_shield_114.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		1B4729E5171A365200DBCCBB /* BSDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSDefines.h; sourceTree = "<group>"; };
 		1B4729E6171A435800DBCCBB /* BSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSViewController.h; sourceTree = "<group>"; };
 		1B4729E7171A435800DBCCBB /* BSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
+		1BF00874171AA738003C2E90 /* bluetooth_shield_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth_shield_57.png; path = ../bluetooth_shield_57.png; sourceTree = "<group>"; };
+		1BF00876171AA73C003C2E90 /* bluetooth_shield_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bluetooth_shield_114.png; path = ../bluetooth_shield_114.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 		1B4729BF171A31EC00DBCCBB /* BlueShieldDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1BF00878171AAB95003C2E90 /* Images */,
 				1B4729DF171A323300DBCCBB /* BlueShield */,
 				1B4729C8171A31EC00DBCCBB /* BSAppDelegate.h */,
 				1B4729C9171A31EC00DBCCBB /* BSAppDelegate.m */,
@@ -124,6 +129,15 @@
 				1B4729E5171A365200DBCCBB /* BSDefines.h */,
 			);
 			name = BlueShield;
+			sourceTree = "<group>";
+		};
+		1BF00878171AAB95003C2E90 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1BF00876171AA73C003C2E90 /* bluetooth_shield_114.png */,
+				1BF00874171AA738003C2E90 /* bluetooth_shield_57.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +197,8 @@
 				1B4729CE171A31EC00DBCCBB /* Default@2x.png in Resources */,
 				1B4729D0171A31EC00DBCCBB /* Default-568h@2x.png in Resources */,
 				1B4729D3171A31EC00DBCCBB /* MainStoryboard_iPhone.storyboard in Resources */,
+				1BF00875171AA738003C2E90 /* bluetooth_shield_57.png in Resources */,
+				1BF00877171AA73C003C2E90 /* bluetooth_shield_114.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +339,7 @@
 				1B4729DE171A31EC00DBCCBB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

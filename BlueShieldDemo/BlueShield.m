@@ -147,7 +147,7 @@
  *  @discussion controlSetup enables CoreBluetooths Central Manager and sets delegate to TIBLECBKeyfob class
  *
  */
-- (int) controlSetup: (int) s{
+- (int)controlSetup {
     self.cm = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
     return 0;
 }
@@ -164,7 +164,7 @@
  */
 - (int) findBLEPeripherals:(int) timeout {
     
-    if (self.cm.state  != CBCentralManagerStatePoweredOn) {
+    if (self.cm.state != CBCentralManagerStatePoweredOn) {
         printf("CoreBluetooth not correctly initialized !\r\n");
         printf("State = %d (%s)\r\n",self.cm.state,[self centralManagerStateToString:self.cm.state]);
         return -1;
@@ -486,7 +486,7 @@
                   RSSI:(NSNumber *)RSSI
 {
     if (!self.peripherals) {
-        self.peripherals = [[NSMutableArray alloc] initWithObjects:peripheral,nil];
+        self.peripherals = [[NSMutableArray alloc] initWithObjects:peripheral, nil];
     } else {
         for(int i = 0; i < self.peripherals.count; i++) {
             CBPeripheral *p = [self.peripherals objectAtIndex:i];

@@ -20,6 +20,8 @@
 
     
     _shield = [[BlueShield alloc] init];
+    [_shield controlSetup];
+    _shield.delegate = self;
     [_shield findBLEPeripherals:30];
 }
 
