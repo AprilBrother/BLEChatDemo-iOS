@@ -13,8 +13,8 @@
 
 @interface BSShieldViewController : UIViewController <UITextFieldDelegate>
 
-@property (nonatomic, weak)     BlueShield      *shield;
-@property (nonatomic, strong)   CBPeripheral    *peripheral;
+@property (nonatomic, weak) BlueShield *shield;
+@property (nonatomic, strong) CBPeripheral *peripheral;
 
 @property (strong, nonatomic) IBOutlet UITextField *sendText;
 @property (strong, nonatomic) IBOutlet UILabel *rxLabel;

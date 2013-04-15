@@ -280,41 +280,6 @@
     else return 0;
 }
 
-
-/*
- *  @method getAllServicesFromKeyfob
- *
- *  @param p Peripheral to scan
- *
- *
- *  @discussion getAllServicesFromKeyfob starts a service discovery on a peripheral pointed to by p.
- *  When services are found the didDiscoverServices method is called
- *
- */
--(void) getAllServicesFromKeyfob:(CBPeripheral *)p{
-    [p discoverServices:nil]; // Discover all services without filter
-    
-}
-
-/*
- *  @method getAllCharacteristicsFromKeyfob
- *
- *  @param p Peripheral to scan
- *
- *
- *  @discussion getAllCharacteristicsFromKeyfob starts a characteristics discovery on a peripheral
- *  pointed to by p
- *
- */
--(void) getAllCharacteristicsFromKeyfob:(CBPeripheral *)p{
-    for (int i=0; i < p.services.count; i++) {
-        CBService *s = [p.services objectAtIndex:i];
-        printf("Fetching characteristics for service with UUID : %s\r\n",[self CBUUIDToString:s.UUID]);
-        [p discoverCharacteristics:nil forService:s];
-    }
-}
-
-
 /*
  *  @method CBUUIDToString
  *
@@ -498,6 +463,26 @@
 }
 
 #pragma mark - CBPeripheralDelegate
+
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error {
+    if (error) {
+        return;
+    }
+    
+    for (CBService *s in peripheral.services) {
+        [peripheral discoverCharacteristics:nil forService:s];
+    }
+}
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error {
+    if (error) {
+        return;
+    }
+    
+    if (_delegate) {
+        [_delegate shieldDidReceiveData:characteristic.value];
+    }
+}
 
 /*
  *  @method didDiscoverCharacteristicsForService

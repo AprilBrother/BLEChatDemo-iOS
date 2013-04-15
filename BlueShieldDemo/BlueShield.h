@@ -15,6 +15,8 @@
 
 @protocol BlueShieldDelegate
 
+- (void)shieldDidReceiveData:(NSData *)data;
+
 @end
 
 @interface BlueShield : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
@@ -37,8 +39,6 @@
 - (void)printPeripheralInfo:(CBPeripheral*)peripheral;
 - (void)connectPeripheral:(CBPeripheral *)peripheral;
 
-- (void)getAllServicesFromKeyfob:(CBPeripheral *)p;
-- (void)getAllCharacteristicsFromKeyfob:(CBPeripheral *)p;
 - (CBService *)findServiceFromUUID:(CBUUID *)UUID p:(CBPeripheral *)p;
 - (CBCharacteristic *)findCharacteristicFromUUID:(CBUUID *)UUID service:(CBService*)service;
 - (const char *)UUIDToString:(CFUUIDRef)UUID;

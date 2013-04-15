@@ -26,7 +26,6 @@
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [_peripheral discoverServices:nil];
         CBUUID *serviceId = [CBUUID UUIDWithString:BS_SERIAL_SERVICE_UUID];
         CBUUID *charId = [CBUUID UUIDWithString:BS_SERIAL_RX_UUID];
         [_shield notification:serviceId
@@ -45,14 +44,17 @@
 #pragma mark - custom method
 
 - (void)sendTx {
-    
+    NSData *data = [_sendText.text dataUsingEncoding:NSUTF8StringEncoding];
+    [_shield writeValue:[CBUUID UUIDWithString:BS_SERIAL_SERVICE_UUID]
+     characteristicUUID:[CBUUID UUIDWithString:BS_SERIAL_TX_UUID]
+                      p:_peripheral
+                   data:data];
 }
 
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
-    [self sendTx];
     return YES;
 }
 
