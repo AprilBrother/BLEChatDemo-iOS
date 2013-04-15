@@ -22,7 +22,6 @@
 
     _shield = [[BlueShield alloc] init];
     [_shield controlSetup];
-    _shield.delegate = self;
     
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));

@@ -13,18 +13,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@protocol BlueShieldDelegate
-
-- (void)shieldDidReceiveData:(NSData *)data;
-
-@end
+typedef void (^BSSuccessBlock)(NSData *data, NSError *error);
 
 @interface BlueShield : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-@property (nonatomic, assign)   id <BlueShieldDelegate> delegate;
-@property (strong, nonatomic)   NSMutableArray *peripherals;
-@property (strong, nonatomic)   CBCentralManager *cm;
-@property (strong, nonatomic)   CBPeripheral *activePeripheral;
+@property (strong, nonatomic) NSMutableArray *peripherals;
+@property (strong, nonatomic) CBCentralManager *cm;
+@property (strong, nonatomic) CBPeripheral *activePeripheral;
+@property (copy, nonatomic) BSSuccessBlock updatedValueBlock;
 
 - (void)writeValue:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID  p:(CBPeripheral *)p data:(NSData *)data;
 - (void)readValue:(CBUUID *)serviceUUID characteristicUUID:(CBUUID *)characteristicUUID  p:(CBPeripheral *)p;
@@ -47,5 +43,7 @@
 - (int)compareCBUUIDToInt:(CBUUID *)UUID1 UUID2:(UInt16)UUID2;
 - (UInt16)CBUUIDToInt:(CBUUID *)UUID;
 - (int)UUIDSAreEqual:(CFUUIDRef)u1 u2:(CFUUIDRef)u2;
+
+- (void)didUpdateValueBlock:(BSSuccessBlock)block;
 
 @end

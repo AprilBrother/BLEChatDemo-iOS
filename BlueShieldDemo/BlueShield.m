@@ -419,13 +419,15 @@
  *
  */
 -(CBCharacteristic *) findCharacteristicFromUUID:(CBUUID *)UUID service:(CBService*)service {
-    NSLog(@"service %@ service.uuid %@", service, service.UUID);
-    NSLog(@"service count %d", [service.characteristics count]);
     for(int i=0; i < service.characteristics.count; i++) {
         CBCharacteristic *c = [service.characteristics objectAtIndex:i];
         if ([self compareCBUUID:c.UUID UUID2:UUID]) return c;
     }
     return nil; //Characteristic not found on this service
+}
+
+- (void)didUpdateValueBlock:(BSSuccessBlock)block {
+    _updatedValueBlock = block;
 }
 
 #pragma mark - CBCentralManagerDelegate
@@ -479,8 +481,8 @@
         return;
     }
     
-    if (_delegate) {
-        [_delegate shieldDidReceiveData:characteristic.value];
+    if (_updatedValueBlock) {
+        _updatedValueBlock(characteristic.value, error);
     }
 }
 
