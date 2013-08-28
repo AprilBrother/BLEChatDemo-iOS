@@ -12,6 +12,13 @@
 
 #import "BlueShield.h"
 
+@interface BlueShield ()
+
+@property (copy, nonatomic) BSSuccessBlock updatedValueBlock;
+@property (copy, nonatomic) BSSuccessBlock powerOnBlock;
+
+@end
+
 @implementation BlueShield
 
 /*!
@@ -157,7 +164,11 @@
         return -1;
     }
     
-    [NSTimer scheduledTimerWithTimeInterval:(float)timeout target:self selector:@selector(scanTimer:) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:(float)timeout
+                                     target:self
+                                   selector:@selector(scanTimer:)
+                                   userInfo:nil
+                                    repeats:NO];
     
     [self.cm scanForPeripheralsWithServices:nil options:0]; // Start scanning
     return 0; // Started scanning OK !
@@ -426,6 +437,10 @@
     return nil; //Characteristic not found on this service
 }
 
+- (void)didPowerOnBlock:(BSSuccessBlock)block {
+    _powerOnBlock = block;
+}
+
 - (void)didUpdateValueBlock:(BSSuccessBlock)block {
     _updatedValueBlock = block;
 }
@@ -434,6 +449,11 @@
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
     printf("Status of CoreBluetooth central manager changed %d (%s)\r\n",central.state,[self centralManagerStateToString:central.state]);
+    if (central.state == CBCentralManagerStatePoweredOn) {
+        if (_powerOnBlock) {
+            _powerOnBlock(nil, nil);
+        }
+    }
 }
 
 - (void)centralManager:(CBCentralManager *)central
