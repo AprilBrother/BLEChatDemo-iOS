@@ -16,6 +16,7 @@
 
 @property (copy, nonatomic) BSSuccessBlock updatedValueBlock;
 @property (copy, nonatomic) BSSuccessBlock powerOnBlock;
+@property (copy, nonatomic) BSSuccessBlock discoveredCharacteristicsBlock;
 
 @end
 
@@ -445,6 +446,11 @@
     _updatedValueBlock = block;
 }
 
+- (void)didDiscoverCharacteristicsBlock:(BSSuccessBlock)block {
+    _discoveredCharacteristicsBlock = block;
+}
+
+
 #pragma mark - CBCentralManagerDelegate
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central {
@@ -527,6 +533,10 @@
             if([self compareCBUUID:service.UUID UUID2:s.UUID]) {
                 printf("Finished discovering characteristics");
             }
+        }
+        
+        if (_discoveredCharacteristicsBlock) {
+            _discoveredCharacteristicsBlock(service, nil);
         }
     } else {
         printf("Characteristic discorvery unsuccessfull !\r\n");

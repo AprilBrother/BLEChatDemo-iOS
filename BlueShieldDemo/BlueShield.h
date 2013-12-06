@@ -45,5 +45,6 @@ typedef void (^BSSuccessBlock)(id response, NSError *error);
 
 - (void)didUpdateValueBlock:(BSSuccessBlock)block;
 - (void)didPowerOnBlock:(BSSuccessBlock)block;
+- (void)didDiscoverCharacteristicsBlock:(BSSuccessBlock)block;
 
 @end
