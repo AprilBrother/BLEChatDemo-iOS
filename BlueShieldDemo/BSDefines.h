@@ -12,7 +12,7 @@
 
 #define BS_SERIAL_SERVICE_UUID                         @"FFF0"
 #define BS_SERIAL_RX_UUID                              @"FFF1"
-#define BS_SERIAL_TX_UUID                              @"FFF1"
+#define BS_SERIAL_TX_UUID                              @"FFF2"
 
 #define BS_SERIAL_RX_LEN                               20
 #define BS_SERIAL_TX_LEN                               20
